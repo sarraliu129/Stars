@@ -2,8 +2,8 @@ import random
 index_max = 100
 stars = []
 
-for _ in range(100):
-    star = [random.randint(0, 640), random.randint(0, 480)] 
+for i in range(100):
+    star = ([random.randint(0, 640), random.randint(0, 480)])
     stars += star
     
     
@@ -21,20 +21,19 @@ def draw():
     
 
     index = 0
-    
-    while index < index_max:
-        if stars_x[index] > 640:
-            stars_x.pop(index)
-            stars_y.pop(index)
+
+        
+    for star in stars:
+        if star[0] >= 640:
+            star.pop(index)
             index_max -= 1
         else:
-            ellipse(stars_x[index], stars_y[index], 5, 5)
-            stars_x[index] += 0.2
+            ellipse(star[0], star[1], 5, 5)
+            star[0] += 0.2
             index += 1
             
     if frameCount % 60 == 0:
-        stars_x.append(random.randint(-10, 0))
-        stars_y.append(random.randint(0, 480))
+        stars.append([random.randint(-10, 0), random.randint(0, 480)])
         index_max += 1
     
    
